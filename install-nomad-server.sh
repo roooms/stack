@@ -2,7 +2,7 @@
 set -ex
 
 APP="nomad"
-VERSION="0.5.4"
+VERSION="0.5.6"
 ZIP="${APP}_${VERSION}_linux_amd64.zip"
 URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 DATA_DIR="/var/lib/${APP}"

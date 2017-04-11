@@ -2,7 +2,7 @@
 set -ex
 
 APP="consul-template"
-VERSION="0.18.1"
+VERSION="0.18.2"
 ZIP="${APP}_${VERSION}_linux_amd64.zip"
 URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 
