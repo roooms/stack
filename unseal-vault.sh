@@ -15,7 +15,7 @@ if [ ! "$(cget root-token)" ]; then # no root token in consul kv so init vault
   # export root token and store in consul kv
   ROOT_TOKEN="$(cat /tmp/vault.init | grep '^Initial' | awk '{print $4}')" && \
   export ROOT_TOKEN
-  cput vault/root-token ${ROOT_TOKEN}
+  cput root-token ${ROOT_TOKEN}
   # shred the output
   shred /tmp/vault.init
 fi
