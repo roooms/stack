@@ -8,8 +8,8 @@ URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 CONFIG_DIR="/etc/${APP}"
 DATA_DIR="/var/lib/${APP}"
 DOWNLOAD_DIR="/tmp"
-PUBLIC_IPV4="$(ifconfig | grep "10.0.0" | awk '{print $2}' | cut -d: -f2)"
-INTERFACE_NAME="$(ifconfig | grep -B1 "10.0.0" | head -1 | awk '{print $1}')"
+PUBLIC_IPV4="$(ip route | grep -v "10.0.2" | awk '{print $9}')"
+INTERFACE_NAME="$(ip route | grep -v "10.0.2" | awk '{print $3}')"
 
 echo "Downloading ${APP} ${VERSION}"
 pushd ${DOWNLOAD_DIR}
