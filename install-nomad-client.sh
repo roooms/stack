@@ -11,10 +11,15 @@ DOWNLOAD_DIR="/tmp"
 PUBLIC_IPV4="$(ip route | grep -v "10.0.2" | awk '{print $9}')"
 INTERFACE_NAME="$(ip route | grep -v "10.0.2" | awk '{print $3}')"
 
-echo "Downloading ${APP} ${VERSION}"
-pushd ${DOWNLOAD_DIR}
-curl -O ${URL}
-popd
+if [[ ! -f /vagrant/zips/${ZIP} ]]; then
+  echo "Downloading ${APP} ${VERSION}"
+  pushd ${DOWNLOAD_DIR}
+  curl -O ${URL}
+  popd
+else
+  echo "Found /vagrant/zips/${ZIP}"
+  DOWNLOAD_DIR="/vagrant/zips"
+fi
 
 echo "Installing ${APP}"
 sudo unzip -o ${DOWNLOAD_DIR}/${ZIP} -d /usr/local/bin/
