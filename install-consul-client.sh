@@ -2,7 +2,7 @@
 set -ex
 
 APP="consul"
-VERSION="0.8.0"
+VERSION="0.8.3"
 ZIP="${APP}_${VERSION}_linux_amd64.zip"
 URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 CONFIG_DIR="/etc/${APP}"
