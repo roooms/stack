@@ -58,6 +58,7 @@ sudo mv default.hcl ${CONFIG_DIR}
 # env configuration
 echo "export VAULT_ADDR=http://${PUBLIC_IPV4}:8200" | sudo tee /etc/profile.d/${APP}.sh
 sudo chmod 644 /etc/profile.d/${APP}.sh
+source /etc/profile.d/${APP}.sh
 
 echo "Enabling and starting ${APP}"
 sudo systemctl enable ${APP}
