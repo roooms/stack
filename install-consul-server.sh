@@ -10,20 +10,29 @@ DATA_DIR="/var/lib/${APP}"
 DOWNLOAD_DIR="/tmp"
 PUBLIC_IPV4="$(ip route | grep -v "10.0.2" | awk '{print $9}')"
 
-echo "Downloading ${APP} ${VERSION}"
-pushd ${DOWNLOAD_DIR}
-curl -O ${URL}
-popd
+if [[ ! -f $(which unzip) ]]; then
+  sudo apt-get install -y unzip
+fi
 
-echo "Installing ${APP}"
-sudo unzip -o ${DOWNLOAD_DIR}/${ZIP} -d /usr/local/bin/
+if [[ ! -f /vagrant/zips/${ZIP} ]]; then
+  echo "--> Downloading ${APP} ${VERSION}"
+  pushd ${DOWNLOAD_DIR}
+  curl -s -O ${URL}
+  popd
+else
+  echo "--> Found /vagrant/zips/${ZIP}"
+  DOWNLOAD_DIR="/vagrant/zips"
+fi
+
+echo "--> Installing ${APP}"
+sudo unzip -q -o ${DOWNLOAD_DIR}/${ZIP} -d /usr/local/bin/
 sudo chmod 755 /usr/local/bin/${APP}
 sudo mkdir -p ${CONFIG_DIR}
 sudo chmod 755 ${CONFIG_DIR}
 sudo mkdir -p ${DATA_DIR}
 sudo chmod 755 ${DATA_DIR}
 
-echo "Configuring ${APP}"
+echo "--> Configuring ${APP}"
 cat > ${APP}.service <<'EOF'
 [Unit]
 Description=consul agent
