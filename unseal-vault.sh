@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -ex
+set -e
+#set -x
 
 cget() { consul kv get vault/${1}; }
 cput() { consul kv put vault/${1} ${2}; }

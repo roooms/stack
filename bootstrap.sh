@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -ex
+set -e
+#set -x
 
 sudo apt-get update --fix-missing
 sudo apt-get install --yes zip unzip git make dnsmasq
