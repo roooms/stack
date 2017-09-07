@@ -1,0 +1,13 @@
+{
+  "service": {
+    "name": "http-echo",
+    "address": "",
+    "port": 8080,
+    "check": {
+      "name": "HTTP port 8080",
+      "http": "http://localhost:8080/",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+  }
+}
