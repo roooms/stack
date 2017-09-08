@@ -1,10 +1,11 @@
 {
   "advertise_addr": "{{ advertise_addr }}",
+  "bind_addr": "0.0.0.0",
+  "client_addr": "0.0.0.0",
+  "datacenter": "vagrant",
   "log_level": "INFO",
   "data_dir": "/opt/consul/",
-  "ui_dir": "/opt/consul/ui",
-  "skip_leave_on_interrupt": true,
-  "leave_on_terminate": true,
+  "ui": true,
   "node_name": "{{ node_name }}",
   "retry_join": ["10.0.0.11","10.0.0.12","10.0.0.13"]
 }
