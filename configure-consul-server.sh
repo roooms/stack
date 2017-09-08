@@ -5,7 +5,7 @@ set -e
 SCRIPT_PATH="$(dirname ${BASH_SOURCE[0]})"
 BOOTSTRAP_EXPECT="${1:-"3"}"
 ADVERTISE_ADDR="$(ip route | grep "enp0s8" | awk '{print $9}')"
-NODE_NAME="$(hostname --fqdn)"
+NODE_NAME="$(hostname)"
 
 echo "--> Configuring consul server"
 sed -e "s/{{ advertise_addr }}/${ADVERTISE_ADDR}/g" \
