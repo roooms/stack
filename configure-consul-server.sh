@@ -7,6 +7,10 @@ BOOTSTRAP_EXPECT="${1:-"3"}"
 ADVERTISE_ADDR="$(ip route | grep "enp0s8" | awk '{print $9}')"
 NODE_NAME="$(hostname)"
 
+echo "--> Deleting any existing configuration and local data"
+sudo rm -rf /etc/consul.d/*
+sudo rm -rf /opt/consul/*
+
 echo "--> Configuring consul server"
 sed -e "s/{{ advertise_addr }}/${ADVERTISE_ADDR}/g" \
     -e "s/{{ node_name }}/${NODE_NAME}/g" \
