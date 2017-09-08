@@ -8,6 +8,7 @@
   "ui": true,
   "node_name": "{{ node_name }}",
   "retry_join": ["10.0.0.11","10.0.0.12","10.0.0.13"],
+  "raft_protocol": 3,
   "service": {
     "name": "consul-client",
     "tags": ["{{ node_name }}"]
