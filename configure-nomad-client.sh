@@ -3,7 +3,7 @@ set -e
 #set -x
 
 SCRIPT_PATH="$(dirname ${BASH_SOURCE[0]})"
-ADVERTISE_ADDR="$(ip route | grep -v "10.0.2" | awk '{print $9}')"
+ADVERTISE_ADDR="$(ip route | grep "enp0s8" | awk '{print $9}')"
 NODE_NAME="$(hostname --fqdn)"
 
 echo "--> Configuring nomad client"
