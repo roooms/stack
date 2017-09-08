@@ -2,12 +2,12 @@
 set -e
 #set -x
 
-echo "--> Update apt"
+echo "--> Updating apt"
 sudo apt-get update --fix-missing
-echo "--> Install base packages"
+echo "--> Installing base packages"
 sudo apt-get install --yes zip unzip git make dnsmasq
 
-echo "--> Configure dnsmasq"
+echo "--> Configuring dnsmasq"
 cat > /tmp/10-consul <<'EOF'
 server=/consul/127.0.0.1#8600
 EOF
