@@ -22,7 +22,7 @@ if [[ -f /vagrant/setup/${ZIP} ]]; then
 else
   echo "--> Attempting download of ${APP} ${VERSION} to /tmp/${ZIP}"
   pushd /tmp > /dev/null
-  if curl -s -O ${URL}; then
+  if curl -O ${URL}; then
     echo "--> Downloaded ${ZIP}"
     popd > /dev/null
   else
