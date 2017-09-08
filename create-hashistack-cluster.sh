@@ -5,8 +5,8 @@ set -e
 SCRIPT_PATH="$(dirname ${BASH_SOURCE[0]})"
 NODE_NAME="$(hostname)"
 
-if [[ ! -f $(which dnsmasq) ]]; then
-  echo "--> Unable to find dnsmasq"
+if [[ ! -f $(which make) ]]; then
+  echo "--> Unable to find make"
   echo "--> Running bootstrap"
   bash ${SCRIPT_PATH}/bootstrap.sh
 fi
