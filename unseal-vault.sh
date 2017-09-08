@@ -5,6 +5,8 @@ set -e
 cget() { consul kv get vault/${1}; }
 cput() { consul kv put vault/${1} ${2}; }
 
+source /etc/profile.d/vault.sh
+
 if [ ! "$(cget root-token)" ]; then # no root token in consul kv so init vault
   echo "--> Initialising vault"
   vault init | tee /tmp/vault.init
