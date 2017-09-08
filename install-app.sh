@@ -18,19 +18,20 @@ fi
 
 if [[ -f /vagrant/setup/${ZIP} ]]; then
   echo "--> Found /vagrant/setup/${ZIP}"
-  sudo unzip -q -o /vagrant/setup/${ZIP} -d /usr/local/bin/
+  cp /vagrant/setup/${ZIP} /tmp/${ZIP}
 else
   echo "--> Attempting download of ${APP} ${VERSION} to /tmp/${ZIP}"
   pushd /tmp > /dev/null
   if curl -s -O ${URL}; then
     echo "--> Downloaded ${ZIP}"
     popd > /dev/null
-    sudo unzip -q -o /tmp/${ZIP} -d /usr/local/bin/
   else
     echo "--> Unable to download ${ZIP}"
     popd > /dev/null
+    exit 1
   fi
 fi
+sudo unzip -q -o /tmp/${ZIP} -d /usr/local/bin/
 
 echo "--> Installing ${APP}"
 sudo chmod 755 /usr/local/bin/${APP}
