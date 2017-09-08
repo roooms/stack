@@ -12,5 +12,5 @@ sed -e "s/{{ vault_ip }}/${VAULT_IP}/g" \
     ${SCRIPT_PATH}/config/etc_vault.d_default.hcl \
     | sudo tee /etc/vault.d/default.hcl
 # env configuration
-echo "export VAULT_ADDR=http://${VAULT_IP}:8200" | sudo tee /etc/profile.d/vault.sh
+echo "export VAULT_ADDR=${VAULT_ADDR}" | sudo tee /etc/profile.d/vault.sh
 sudo chmod 644 /etc/profile.d/vault.sh
