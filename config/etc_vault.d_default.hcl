@@ -3,6 +3,6 @@ backend "consul" {
   path = "vault/"
 }
 listener "tcp" {
-  address = "{{ private_ip }}:8200"
+  address = "{{ vault_ip }}:8200"
   tls_disable = "true"
 }
