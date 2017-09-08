@@ -6,7 +6,8 @@ cget() { consul kv get vault/${1}; }
 cput() { consul kv put vault/${1} ${2}; }
 
 if [ ! "$(cget root-token)" ]; then # no root token in consul kv so init vault
-  vault init | tee /tmp/vault.init > /dev/null
+  echo "--> Initialising vault"
+  vault init | tee /tmp/vault.init
   # store master keys in consul for operator to retrieve and remove
   COUNTER=1
   grep '^Unseal' /tmp/vault.init | awk '{print $4}' | for KEY in $(cat -); do
@@ -22,6 +23,7 @@ if [ ! "$(cget root-token)" ]; then # no root token in consul kv so init vault
 fi
 
 # unseal vault
+echo "--> Unsealing vault"
 vault unseal "$(cget unseal-key-1)"
 vault unseal "$(cget unseal-key-2)"
 vault unseal "$(cget unseal-key-3)"
