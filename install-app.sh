@@ -16,9 +16,9 @@ if [[ ! -f $(which unzip) ]]; then
   sudo apt-get install -y unzip
 fi
 
-if [[ -f /vagrant/setup/${ZIP} ]]; then
-  echo "--> Found /vagrant/setup/${ZIP}"
-  cp /vagrant/setup/${ZIP} /tmp/${ZIP}
+if [[ -f /vagrant/zips/${ZIP} ]]; then
+  echo "--> Found /vagrant/zips/${ZIP}"
+  cp -f /vagrant/zips/${ZIP} /tmp/${ZIP}
 else
   echo "--> Attempting download of ${APP} ${VERSION} to /tmp/${ZIP}"
   pushd /tmp > /dev/null
