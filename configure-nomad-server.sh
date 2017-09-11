@@ -3,8 +3,9 @@ set -e
 #set -x
 
 SCRIPT_PATH="$(dirname ${BASH_SOURCE[0]})"
-BOOTSTRAP_EXPECT="${1:-"3"}"
+
 ADVERTISE_ADDR="$(ip route | grep "enp0s8" | awk '{print $9}')"
+BOOTSTRAP_EXPECT="${1:-"3"}"
 NODE_NAME="$(hostname)"
 
 echo "--> Configuring nomad server"
