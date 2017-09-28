@@ -2,17 +2,17 @@
 set -e
 #set -x
 
-SCRIPT_PATH="../../$(dirname ${BASH_SOURCE[0]})"
+SCRIPT_PATH="/vagrant/bin"
 
 BOOTSTRAP_EXPECT="3"
-DATACENTER="primary"
+DATACENTER="vagrant"
 NODE_NAME="$(hostname)"
 RETRY_JOIN="11"
 
-bash ${SCRIPT_PATH}/bootstrap.sh
-bash ${SCRIPT_PATH}/install-app.sh consul 0.9.2 consul-enterprise_0.9.2+ent_linux_amd64.zip
-bash ${SCRIPT_PATH}/install-app.sh nomad 0.6.2
-bash ${SCRIPT_PATH}/install-app.sh vault 0.8.2 vault-enterprise_0.8.2_linux_amd64.zip
+bash ${SCRIPT_PATH}/configure-dnsmasq.sh
+bash ${SCRIPT_PATH}/install-app.sh consul 0.6.4
+bash ${SCRIPT_PATH}/install-app.sh nomad 0.6.3
+bash ${SCRIPT_PATH}/install-app.sh vault 0.5.2 
 
 case ${NODE_NAME} in
   node1 | node2 | node3 )

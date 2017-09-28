@@ -2,8 +2,6 @@
 set -e
 #set -x
 
-SCRIPT_PATH="$(dirname ${BASH_SOURCE[0]})"
-
 APP="${1:-"consul"}"
 VERSION="${2:-"0.9.2"}"
 ZIP="${3:-"${APP}_${VERSION}_linux_amd64.zip"}"
@@ -31,14 +29,14 @@ else
     exit 1
   fi
 fi
-sudo unzip -q -o /tmp/${ZIP} -d /usr/local/bin/
 
 echo "--> Installing ${APP}"
+sudo unzip -q -o /tmp/${ZIP} -d /usr/local/bin/
 sudo chmod 755 /usr/local/bin/${APP}
 sudo mkdir -p ${CONFIG_DIR} && sudo chmod 755 ${CONFIG_DIR}
 sudo mkdir -p ${DATA_DIR} && sudo chmod 755 ${DATA_DIR}
 
-if [[ -f ${SCRIPT_PATH}/config/etc_systemd_system_${APP}.service ]]; then
+if [[ -f /vagrant/etc/systemd/system/${APP}.service ]]; then
   echo "--> Installing systemd ${APP}.service"
-  sudo cp ${SCRIPT_PATH}/config/etc_systemd_system_${APP}.service /etc/systemd/system/${APP}.service
+  sudo cp /vagrant/etc/systemd/system/${APP}.service /etc/systemd/system/${APP}.service
 fi

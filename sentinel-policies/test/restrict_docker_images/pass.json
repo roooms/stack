@@ -1,0 +1,11 @@
+{
+    "global": {
+        "allowed_images": "redis:3.2"
+    },
+
+    "test": {
+        "main": true,
+        "all_drivers_docker": true,
+        "allowed_docker_images": true
+    }
+}

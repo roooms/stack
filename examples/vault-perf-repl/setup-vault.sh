@@ -2,7 +2,7 @@
 set -e
 #set -x
 
-SCRIPT_PATH="../../$(dirname ${BASH_SOURCE[0]})"
+SCRIPT_PATH="/vagrant/bin"
 
 NODE_NAME="$(hostname)"
 

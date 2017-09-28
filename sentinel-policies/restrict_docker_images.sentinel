@@ -1,0 +1,23 @@
+main = rule { all_drivers_docker and allowed_docker_images }
+
+allowed_images = [
+	"redis:3.2",
+]
+
+all_drivers_docker = rule {
+	all job.task_groups as tg {
+		all tg.tasks as task {
+			task.driver is "docker"
+		}
+	}
+}
+
+allowed_docker_images = rule {
+	all job.task_groups as tg {
+		all tg.tasks as task {
+			any allowed_images as allowed {
+				task.config.image matches allowed
+			}
+		}
+	}
+}

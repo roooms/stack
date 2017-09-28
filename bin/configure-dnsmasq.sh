@@ -2,10 +2,8 @@
 set -e
 #set -x
 
-echo "--> Updating apt"
-sudo apt-get update --fix-missing
-echo "--> Installing base packages"
-sudo apt-get install --yes zip unzip dnsmasq
+echo "--> Installing dnsmasq"
+sudo apt-get install -y dnsmasq
 
 echo "--> Configuring dnsmasq"
 cat > /tmp/10-consul <<'EOF'

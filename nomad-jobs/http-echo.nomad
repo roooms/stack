@@ -24,10 +24,10 @@ job "http-echo" {
       }
 
       artifact {
-        source = "https://github.com/hashicorp/http-echo/releases/download/v0.2.1/http-echo_0.2.1_linux_amd64.tgz"
+        source = "https://github.com/hashicorp/http-echo/releases/download/v0.2.3/http-echo_0.2.3_linux_amd64.tar.gz"
 
         options {
-          checksum = "sha256:3cf1689e3cf3f1dc92386b934ab2af7616377435d2fdc20df6ce22590afb3fdf"
+          checksum = "sha256:e30b29b72ad5ec1f6dfc8dee0c2fcd162f47127f2251b99e47b9ae8af1d7b917"
         }
       }
 
