@@ -2,7 +2,7 @@
 set -e
 #set -x
 
-ADVERTISE_ADDR="$(ip route | grep "enp0s8" | awk '{print $9}')"
+ADVERTISE_ADDR="$(ip route | grep "eth1" | awk '{print $9}')"
 DATACENTER="${2:-"dc1"}"
 BOOTSTRAP_EXPECT="${1:-"3"}"
 NODE_NAME="$(hostname)"
