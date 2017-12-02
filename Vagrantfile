@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
   config.vm.box = "bento/ubuntu-16.04"
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "256"]
+    vb.customize ["modifyvm", :id, "--memory", "512"]
   end
   nodes = 6
   baseip = 10

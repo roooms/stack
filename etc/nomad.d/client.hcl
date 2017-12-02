@@ -1,4 +1,4 @@
 client {
   enabled = true
-  network_interface = "enp0s8"
+  network_interface = "{{ network_interface }}"
 }
