@@ -1,0 +1,16 @@
+import "tfplan"
+
+allowed_instance_types = [
+    "t2.nano",
+    "t2.micro",
+    "t2.small",
+]
+
+main = rule {
+  all tfplan.resources.aws_instance as name, resource {
+    print(name) and
+    all resource as index, instance {
+      instance.applied.instance_type in allowed_instance_types
+    }
+  }
+}
