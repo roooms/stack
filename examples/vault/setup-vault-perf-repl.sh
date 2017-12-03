@@ -6,7 +6,7 @@ SCRIPT_PATH="/vagrant/bin"
 
 NODE_NAME="$(hostname)"
 
-/vagrant/bin/install-app.sh consul 0.9.2 consul-enterprise_0.9.2+ent_linux_amd64.zip
+/vagrant/bin/install-app.sh consul 1.0.1 consul-enterprise_1.0.1+ent_linux_amd64.zip
 
 case ${NODE_NAME} in
   node1 | node2 | node3 )
@@ -37,7 +37,7 @@ case ${NODE_NAME} in
   ;;
 esac
 
-/vagrant/bin/install-app.sh vault 0.8.2 vault-enterprise_0.8.2_linux_amd64.zip
+/vagrant/bin/install-app.sh vault 0.8.3 vault-enterprise_0.8.3_linux_amd64.zip
 /vagrant/bin/configure-vault-server.sh
 /vagrant/bin/start-app.sh vault
 echo "--> Sleep 10"

@@ -4,7 +4,7 @@ set -e
 
 NODE_NAME="$(hostname)"
 
-/vagrant/bin/install-app.sh consul 0.9.2 consul-enterprise_0.9.2+ent_linux_amd64.zip
+/vagrant/bin/install-app.sh consul 1.0.1 consul-enterprise_1.0.1+ent_linux_amd64.zip
 
 case ${NODE_NAME} in
   node1 | node2 | node3 )
