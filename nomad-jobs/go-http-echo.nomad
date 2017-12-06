@@ -1,4 +1,4 @@
-job "http-echo" {
+job "go-http-echo" {
   datacenters = ["dc1"]
 
   update {
@@ -9,7 +9,7 @@ job "http-echo" {
   group "http-echo" {
     count = 10
 
-    task "http-echo" {
+    task "server" {
       driver = "exec"
 
       config {
@@ -38,7 +38,7 @@ job "http-echo" {
       }
 
       service {
-        name = "http-echo"
+        name = "go-http-echo"
         port = "http"
 
         check {
