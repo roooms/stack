@@ -4,10 +4,7 @@ set -e
 
 APP="${1:-"consul"}"
 
-echo "--> Stopping and disabling ${APP}"
-sudo systemctl stop ${APP}
-sudo systemctl disable ${APP}
-sudo systemctl daemon-reload
+bash /vagrant/bin/stop-app.sh ${APP}
 
 echo "--> Deleting any existing configuration and local data"
 sudo rm -rf /etc/${APP}.d/*
