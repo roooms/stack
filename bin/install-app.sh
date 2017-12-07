@@ -10,8 +10,13 @@ CONFIG_DIR="/etc/${APP}.d"
 DATA_DIR="/opt/${APP}"
 
 if [[ ! -f $(which unzip) ]]; then
-  echo "--> Unable to find unzip"
+  echo "--> Installing unzip"
   sudo apt-get install -y unzip
+fi
+
+if [[ ! -f $(which jq) ]]; then
+  echo "--> Installing jq"
+  sudo apt-get install -y jq
 fi
 
 if [[ -f /vagrant/zips/${ZIP} ]]; then

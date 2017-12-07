@@ -2,9 +2,10 @@
 set -e
 #set -x
 
-cget() { consul kv get ${1}; }
-cput() { consul kv put ${1} ${2}; }
+cget() { consul kv get "${1}"; }
+cput() { consul kv put "${1}" "${2}"; }
 
+# shellcheck disable=SC1091
 source /etc/profile.d/vault.sh
 
 if [ ! "$(cget vault-root-token)" ]; then # no root token in consul kv so init vault
@@ -13,13 +14,12 @@ if [ ! "$(cget vault-root-token)" ]; then # no root token in consul kv so init v
   # store master keys in consul for operator to retrieve and remove
   COUNTER=1
   grep '^Unseal' /tmp/vault.init | awk '{print $4}' | for KEY in $(cat -); do
-    cput vault-unseal-key-${COUNTER} ${KEY}
+    cput vault-unseal-key-${COUNTER} "${KEY}"
     COUNTER="$((COUNTER + 1))"
   done
   # export root token and store in consul kv
-  ROOT_TOKEN="$(cat /tmp/vault.init | grep '^Initial' | awk '{print $4}')" && \
-  export ROOT_TOKEN
-  cput vault-root-token ${ROOT_TOKEN}
+  ROOT_TOKEN="$(grep '^Initial' /tmp/vault.init | awk '{print $4}')" && 
+  cput vault-root-token "${ROOT_TOKEN}"
   # shred the output
   shred /tmp/vault.init
 fi

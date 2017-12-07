@@ -2,8 +2,10 @@
 set -e
 #set -x
 
-echo "--> Installing dnsmasq"
-sudo apt-get install -y dnsmasq
+if [[ ! -f $(which dnsmasq) ]]; then
+  echo "--> Installing dnsmasq"
+  sudo apt-get install -y dnsmasq
+fi
 
 echo "--> Configuring dnsmasq"
 cat > /tmp/10-consul <<'EOF'
