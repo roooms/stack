@@ -14,15 +14,14 @@ case ${NODE_NAME} in
   node1 | node2 | node3 )
     /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     /vagrant/bin/configure-nomad-server.sh ${BOOTSTRAP_EXPECT}
-    sudo cp /vagrant/etc/nomad.d/acl.hcl /etc/nomad.d/acl.hcl
     sudo cp /vagrant/etc/nomad.d/debug.hcl /etc/nomad.d/debug.hcl
     /vagrant/bin/start-app.sh consul
     /vagrant/bin/start-app.sh nomad
   ;;
   * )
+    /vagrant/bin/install-docker.sh
     /vagrant/bin/configure-consul-client.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     /vagrant/bin/configure-nomad-client.sh ${BOOTSTRAP_EXPECT}
-    sudo cp /vagrant/etc/nomad.d/acl.hcl /etc/nomad.d/acl.hcl
     sudo cp /vagrant/etc/nomad.d/debug.hcl /etc/nomad.d/debug.hcl
     /vagrant/bin/start-app.sh consul
     /vagrant/bin/start-app.sh nomad

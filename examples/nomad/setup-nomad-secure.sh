@@ -47,6 +47,7 @@ case ${NODE_NAME} in
     /vagrant/bin/start-app.sh nomad
   ;;
   * )
+    /vagrant/bin/install-docker.sh
     /vagrant/bin/configure-consul-client.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     /vagrant/bin/configure-nomad-client.sh ${BOOTSTRAP_EXPECT}
     sudo cp /vagrant/etc/nomad.d/debug.hcl /etc/nomad.d/debug.hcl
