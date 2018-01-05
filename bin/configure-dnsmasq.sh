@@ -2,7 +2,7 @@
 set -e
 #set -x
 
-if [[ ! -f $(which dnsmasq) ]]; then
+if [[ ! -f /lib/systemd/system/dnsmasq.service ]]; then
   echo "--> Installing dnsmasq"
   sudo apt-get install -y dnsmasq
 fi
