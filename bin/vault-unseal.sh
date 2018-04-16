@@ -10,7 +10,7 @@ source /etc/profile.d/vault.sh
 
 if [ ! "$(cget vault-root-token)" ]; then # no root token in consul kv so init vault
   echo "--> Initialising vault"
-  vault init | tee /tmp/vault.init
+  vault operator init | tee /tmp/vault.init
   # store master keys in consul for operator to retrieve and remove
   COUNTER=1
   grep '^Unseal' /tmp/vault.init | awk '{print $4}' | for KEY in $(cat -); do
@@ -26,6 +26,6 @@ fi
 
 # unseal vault
 echo "--> Unsealing vault"
-vault unseal "$(cget vault-unseal-key-1)"
-vault unseal "$(cget vault-unseal-key-2)"
-vault unseal "$(cget vault-unseal-key-3)"
+vault operator unseal "$(cget vault-unseal-key-1)"
+vault operator unseal "$(cget vault-unseal-key-2)"
+vault operator unseal "$(cget vault-unseal-key-3)"
