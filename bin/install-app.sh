@@ -3,11 +3,7 @@ set -e
 #set -x
 
 APP="${1:-"consul"}"
-if [[ ${APP} = "vault" ]]; then
-  VERSION="${2:-"$(curl -s https://releases.hashicorp.com/vault/ | grep vault | grep -v "rc" | grep -v "beta" | head -1 | cut -d"/" -f 3)"}"
-else
-  VERSION="${2:-"$(curl -s https://checkpoint-api.hashicorp.com/v1/check/${APP} | jq -r .current_version)"}"
-fi
+VERSION="${2:-"$(curl -s https://releases.hashicorp.com/${APP}/ | grep href | grep "${APP}" | grep -v "rc" | grep -v "beta" | head -1 | cut -d"/" -f 3)"}"
 ZIP="${3:-"${APP}_${VERSION}_linux_amd64.zip"}"
 URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 CONFIG_DIR="/etc/${APP}.d"
