@@ -4,7 +4,7 @@ set -e
 
 NODE_NAME="$(hostname)"
 
-/vagrant/examples/hashistack/setup-hashistack-cluster.sh
+#/vagrant/examples/hashistack/setup-hashistack-cluster.sh
 
 case ${NODE_NAME} in
   node1 )
@@ -13,7 +13,6 @@ case ${NODE_NAME} in
     consul kv put service/haproxy/timeouts/connect 5000
     consul kv put service/haproxy/timeouts/client 10000
     consul kv put service/haproxy/timeouts/server 10000
-    /vagrant/bin/install-app.sh consul-template 0.19.4
     /vagrant/bin/install-haproxy.sh
   ;;
   node4 | node5 | node6 )

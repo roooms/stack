@@ -5,4 +5,4 @@ set -e
 VAULT_TOKEN="$(consul kv get vault-root-token)"
 export VAULT_TOKEN
 
-vault mount consul
+vault secrets enable consul
