@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
-  config.vm.box = "roooms/ubuntu-16.04"
+  config.vm.box = "roooms/ubuntu-16.04" # https://github.com/roooms/vagrant-boxes
   config.vm.box_check_update = false
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "512"]
