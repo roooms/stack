@@ -7,10 +7,10 @@ NODE_NAME="$(hostname)"
 RETRY_JOIN="11"
 
 /vagrant/bin/configure-dnsmasq.sh
-/vagrant/bin/install-app.sh consul 1.0.7
-/vagrant/bin/install-app.sh consul-template 0.19.4
-/vagrant/bin/install-app.sh nomad 0.8.0
-/vagrant/bin/install-app.sh vault 0.10.0
+/vagrant/bin/install-app.sh consul
+/vagrant/bin/install-app.sh consul-template
+/vagrant/bin/install-app.sh nomad
+/vagrant/bin/install-app.sh vault
 
 case ${NODE_NAME} in
   node1 | node2 | node3 )
