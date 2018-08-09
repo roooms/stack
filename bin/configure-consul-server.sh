@@ -15,7 +15,7 @@ sed -e "s/{{ advertise_addr }}/${ADVERTISE_ADDR}/g" \
     -e "s/{{ acl_datacenter }}/${ACL_DATACENTER}/g" \
     -e "s/{{ node_name }}/${NODE_NAME}/g" \
     -e "s/{{ retry_join }}/${RETRY_JOIN}/g" \
-    /vagrant/etc/consul.d/default.json | sudo tee /etc/consul.d/default.json
+    /vagrant/etc/consul.d/default.hcl | sudo tee /etc/consul.d/default.hcl
 sed -e "s/0/${BOOTSTRAP_EXPECT}/g" \
     -e "s/{{ node_name }}/${NODE_NAME}/g" \
-    /vagrant/etc/consul.d/server.json | sudo tee /etc/consul.d/server.json
+    /vagrant/etc/consul.d/server.hcl | sudo tee /etc/consul.d/server.hcl
