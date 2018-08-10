@@ -5,17 +5,16 @@ set -e
 # shellcheck disable=SC1091
 source /etc/profile.d/vault.sh
 
-if [[ -f ~/.vault-root-token ]]; then
-  echo "--> Unsealing vault"
-  vault operator unseal "$(cat ~/.vault-unseal-key)"
-else
+if [ ! "$(consul kv get vault-root-token)" ]; then 
+  # no root token in consul kv so init vault
   echo "--> Initialising vault"
   vault operator init -key-shares=1 -key-threshold=1 | tee /tmp/vault.init
   KEY="$(grep '^Unseal' /tmp/vault.init | awk '{print $4}')" && \
-    echo "${KEY}" > ~/.vault-unseal-key
+    consul kv put vault-unseal-key "${KEY}"
   ROOT_TOKEN="$(grep '^Initial' /tmp/vault.init | awk '{print $4}')" && \
-    echo "${ROOT_TOKEN}" > ~/.vault-root-token
+    consul kv put vault-root-token "${ROOT_TOKEN}"
   shred /tmp/vault.init
-  echo "--> Unsealing vault"
-  vault operator unseal "$(cat ~/.vault-unseal-key)"
 fi
+
+echo "--> Unsealing vault"
+vault operator unseal "$(consul kv get vault-unseal-key)"
