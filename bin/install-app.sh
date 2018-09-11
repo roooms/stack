@@ -9,12 +9,12 @@ URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 CONFIG_DIR="/etc/${APP}.d"
 DATA_DIR="/opt/${APP}"
 
-if [[ ! -f $(which unzip) ]]; then
+if [[ ! -f $(command -v unzip) ]]; then
   echo "--> Installing unzip"
   sudo apt-get install -y unzip
 fi
 
-if [[ ! -f $(which jq) ]]; then
+if [[ ! -f $(command -v jq) ]]; then
   echo "--> Installing jq"
   sudo apt-get install -y jq
 fi
@@ -40,6 +40,26 @@ sudo unzip -q -o /tmp/${ZIP} -d /usr/local/bin/
 sudo chmod 755 /usr/local/bin/${APP}
 sudo mkdir -p ${CONFIG_DIR} && sudo chmod 755 ${CONFIG_DIR}
 sudo mkdir -p ${DATA_DIR} && sudo chmod 755 ${DATA_DIR}
+case ${APP} in
+  consul | nomad | vault )
+    if grep complete ~/.bashrc | grep "${APP}" >/dev/null 2>&1; then
+      echo "--> Autocomplete for ${APP} already installed"
+    else
+      echo "--> Installing autocomplete for ${APP}"
+      ${APP} -autocomplete-install
+      complete -C /usr/local/bin/${APP} ${APP}
+    fi
+  ;;
+  * )
+  ;;
+esac
+
+if id "${APP}" >/dev/null 2>&1; then
+  echo "--> Dedicated user for ${APP} already exists"
+else
+  echo "--> Adding dedicated ${APP} user"
+  sudo useradd --system --home ${CONFIG_DIR} --shell /bin/false ${APP}
+fi
 
 if [[ -f /vagrant/etc/systemd/system/${APP}.service ]]; then
   echo "--> Installing systemd ${APP}.service"
