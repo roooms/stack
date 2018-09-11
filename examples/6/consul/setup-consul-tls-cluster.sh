@@ -26,7 +26,7 @@ configure_tls() {
 }
 
 case ${NODE_NAME} in
-  node1 | node2 | node3 )
+  server* )
     /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     configure_tls consul server
     /vagrant/bin/start-app.sh consul

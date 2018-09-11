@@ -26,7 +26,7 @@ configure_tls() {
 }
 
 case ${NODE_NAME} in
-  node1 | node2 | node3 )
+  server* )
     /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     /vagrant/bin/configure-nomad-server.sh ${BOOTSTRAP_EXPECT}
     sudo cp /vagrant/etc/nomad.d/debug.hcl /etc/nomad.d/debug.hcl

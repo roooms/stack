@@ -11,7 +11,7 @@ RETRY_JOIN="11"
 /vagrant/bin/install-app.sh consul-template
 
 case ${NODE_NAME} in
-  node1 | node2 | node3 )
+  server* )
     /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     /vagrant/bin/start-app.sh consul
   ;;

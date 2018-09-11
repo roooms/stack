@@ -11,7 +11,7 @@ RETRY_JOIN="11"
 /vagrant/bin/install-app.sh nomad 0.7.0 nomad-enterprise_0.7.0+ent_linux_amd64.zip
 
 case ${NODE_NAME} in
-  node1 | node2 | node3 )
+  server* )
     /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN}
     /vagrant/bin/configure-nomad-server.sh ${BOOTSTRAP_EXPECT}
     sudo cp /vagrant/etc/nomad.d/acl.hcl /etc/nomad.d/acl.hcl

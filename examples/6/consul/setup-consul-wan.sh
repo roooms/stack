@@ -4,10 +4,11 @@ set -e
 
 NODE_NAME="$(hostname)"
 
-/vagrant/bin/install-app.sh consul 1.0.1 consul-enterprise_1.0.1+ent_linux_amd64.zip
+/vagrant/bin/install-app.sh consul 1.2.2 consul-enterprise_1.2.2+prem_linux_amd64.zip
+/vagrant/bin/install-app.sh consul-replicate
 
 case ${NODE_NAME} in
-  node1 | node2 | node3 )
+  server* )
     BOOTSTRAP_EXPECT="3"
     DATACENTER="north"
     RETRY_JOIN="11"
