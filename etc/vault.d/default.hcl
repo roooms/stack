@@ -3,3 +3,4 @@ listener "tcp" {
   tls_disable = "true"
 }
 ui = true
+plugin_directory = "/etc/vault.d/plugins"
