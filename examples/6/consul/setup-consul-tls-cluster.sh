@@ -2,9 +2,9 @@
 set -e
 #set -x
 
-BOOTSTRAP_EXPECT="3"
+BOOTSTRAP_EXPECT="${1:-"3"}"
 NODE_NAME="$(hostname)"
-RETRY_JOIN="11"
+RETRY_JOIN="${2:-"10.0.0.11"}"
 
 /vagrant/bin/configure-dnsmasq.sh
 /vagrant/bin/install-app.sh consul

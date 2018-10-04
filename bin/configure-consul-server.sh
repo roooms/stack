@@ -7,7 +7,7 @@ BOOTSTRAP_EXPECT="${1:-"3"}"
 DATACENTER="${3:-"dc1"}"
 ACL_DATACENTER="${4:-$DATACENTER}"
 NODE_NAME="$(hostname)"
-RETRY_JOIN="10.0.0.${2:-"11"}"
+RETRY_JOIN="${2:-"10.0.0.11"}"
 
 echo "--> Configuring consul server"
 sed -e "s/{{ advertise_addr }}/${ADVERTISE_ADDR}/g" \

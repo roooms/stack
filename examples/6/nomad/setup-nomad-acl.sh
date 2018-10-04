@@ -2,9 +2,9 @@
 set -e
 #set -x
 
-BOOTSTRAP_EXPECT="3"
+BOOTSTRAP_EXPECT="${1:-"3"}"
 NODE_NAME="$(hostname)"
-RETRY_JOIN="11"
+RETRY_JOIN="${2:-"10.0.0.11"}"
 
 /vagrant/bin/configure-dnsmasq.sh
 /vagrant/bin/install-app.sh consul 1.0.1 consul-enterprise_1.0.1+ent_linux_amd64.zip

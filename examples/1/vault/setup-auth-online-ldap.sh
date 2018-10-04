@@ -2,10 +2,13 @@
 set -e
 #set -x
 
-#VAULT_TOKEN="$(consul kv get vault-root-token)"
-#export VAULT_TOKEN
+# shellcheck disable=SC1091
+source /etc/profile.d/vault.sh
 
-vault audit enable file file_path=audit.log 
+VAULT_TOKEN="$(consul kv get vault-root-token)"
+export VAULT_TOKEN
+
+vault audit enable file file_path=/opt/vault/audit.log 
 
 vault auth enable ldap
 
@@ -16,13 +19,13 @@ vault write auth/ldap/config \
     groupdn="dc=example,dc=com" \
     userattr=uid
 
-cat > scientists-policy.hcl <<-EOF
+cat > scientists-policy.hcl -<<EOF
 path "sys/mounts" {
     capabilities = ["read", "list"]
 }
 EOF
 
-cat > mathematicians-policy.hcl <<-EOF
+cat > mathematicians-policy.hcl -<<EOF
 path "sys/mounts" {
     capabilities = ["read", "list"]
 }
