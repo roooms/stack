@@ -35,11 +35,19 @@ else
   fi
 fi
 
+if id "${APP}" >/dev/null 2>&1; then
+  echo "--> Dedicated user for ${APP} already exists"
+else
+  echo "--> Adding dedicated ${APP} user and group"
+  sudo useradd --system --home ${CONFIG_DIR} --shell /bin/false ${APP}
+fi
+
 echo "--> Installing ${APP}"
 sudo unzip -q -o /tmp/${ZIP} -d /usr/local/bin/
 sudo chmod 755 /usr/local/bin/${APP}
-sudo mkdir -p ${CONFIG_DIR} && sudo chmod 755 ${CONFIG_DIR}
-sudo mkdir -p ${DATA_DIR} && sudo chmod 755 ${DATA_DIR}
+sudo mkdir -p ${CONFIG_DIR} && sudo chmod 755 ${CONFIG_DIR} && sudo chown ${APP}:${APP} ${CONFIG_DIR}
+sudo mkdir -p ${DATA_DIR} && sudo chmod 755 ${DATA_DIR} && sudo chown ${APP}:${APP} ${DATA_DIR}
+
 case ${APP} in
   consul | nomad | vault )
     if grep complete ~/.bashrc | grep "${APP}" >/dev/null 2>&1; then
@@ -53,13 +61,6 @@ case ${APP} in
   * )
   ;;
 esac
-
-if id "${APP}" >/dev/null 2>&1; then
-  echo "--> Dedicated user for ${APP} already exists"
-else
-  echo "--> Adding dedicated ${APP} user"
-  sudo useradd --system --home ${CONFIG_DIR} --shell /bin/false ${APP}
-fi
 
 if [[ -f /vagrant/etc/systemd/system/${APP}.service ]]; then
   echo "--> Installing systemd ${APP}.service"

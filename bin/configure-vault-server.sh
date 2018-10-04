@@ -5,8 +5,13 @@ set -e
 VAULT_IP="$(hostname -I | awk '{print $2}')"
 VAULT_ADDR="http://${VAULT_IP}:8200"
 VAULT_STORAGE="${1:-"consul"}"
+PLUGIN_DIR="/etc/vault.d/plugins"
+
+echo "--> Enable mlock syscall for vault"
+sudo setcap cap_ipc_lock=+ep /usr/local/bin/vault
 
 echo "--> Configuring vault server"
+sudo mkdir -p ${PLUGIN_DIR} && sudo chmod 755 ${PLUGIN_DIR}
 # vault configuration file
 sed -e "s/{{ vault_ip }}/${VAULT_IP}/g" \
     /vagrant/etc/vault.d/default.hcl | sudo tee /etc/vault.d/default.hcl

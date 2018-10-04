@@ -4,6 +4,8 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
+User=vault
+Group=vault
 EnvironmentFile=-/etc/default/vault
 Restart=on-failure
 ExecStart=/usr/local/bin/vault server $OPTIONS -config=/etc/vault.d/
