@@ -9,6 +9,11 @@ Vagrant.configure(2) do |config|
     vb.memory = 1024
     vb.cpus = 1
   end
+#config.vm.provider "vmware_desktop" do |v|
+#  v.vmx["memsize"] = "1024"
+#  v.vmx["numvcpus"] = "2"
+#  v.whitelist_verified = true
+#end
   # servers
   sbaseip = 10
   (1..3).each do |n|
