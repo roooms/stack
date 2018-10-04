@@ -4,7 +4,6 @@ client_addr = "0.0.0.0"
 datacenter = "{{ datacenter }}"
 data_dir = "/opt/consul/"
 encrypt = "Luj2FZWwlt8475wD1WtwUQ=="
-log_level = "DEBUG"
 performance {
   raft_multiplier = 1
 }
