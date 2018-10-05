@@ -2,6 +2,12 @@
 set -e
 #set -x
 
-bash /vagrant/bin/reset-app.sh vault
-bash /vagrant/bin/reset-app.sh nomad
-bash /vagrant/bin/reset-app.sh consul
+reset-app() {
+if [[ -f $(command -v "$1") ]]; then
+  bash /vagrant/bin/reset-app.sh "$1"
+fi
+}
+
+reset-app vault
+reset-app nomad
+reset-app consul
