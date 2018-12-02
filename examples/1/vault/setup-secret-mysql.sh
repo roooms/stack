@@ -25,7 +25,6 @@ EOF
 sleep 2
 vault secrets enable database
 
-
 # Configure mysql connection
 sleep 2
 vault write database/config/mysql \
@@ -48,4 +47,4 @@ vault read database/creds/readonly
 # Check the user is created
 sleep 2
 mysql -u root -p'R00t?' -e "select user from mysql.user;"
-#watch -d "mysql -u root -p'r00t' -e 'select user from mysql.user;'"
+#watch -d "mysql -u root -p'R00t?' -e 'select user from mysql.user;'"
