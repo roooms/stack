@@ -16,7 +16,7 @@ case ${NODE_NAME} in
     BOOTSTRAP_EXPECT="3"
     DATACENTER="north"
     RETRY_JOIN="10.0.0.11"
-    /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN} ${DATACENTER}
+    /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN} ${DATACENTER} ${ACL_DATACENTER}
     /vagrant/bin/start-app.sh consul
     echo "--> Sleep 10"
     sleep 10
@@ -29,7 +29,7 @@ case ${NODE_NAME} in
     BOOTSTRAP_EXPECT="3"
     DATACENTER="south"
     RETRY_JOIN="10.0.0.14"
-    /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN} ${DATACENTER}
+    /vagrant/bin/configure-consul-server.sh ${BOOTSTRAP_EXPECT} ${RETRY_JOIN} ${DATACENTER} ${ACL_DATACENTER}
     /vagrant/bin/start-app.sh consul
     echo "--> Sleep 10"
     sleep 10
