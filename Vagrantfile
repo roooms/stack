@@ -9,6 +9,9 @@ Vagrant.configure(2) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.memory = 1024
     vb.cpus = 1
+    vb.default_nic_type ="virtio"
+    vb.customize ["modifyvm", :id, "--usb", "off"]
+    vb.customize ["modifyvm", :id, "--audio", "none"]
   end
   # servers
   sbaseip = 10
