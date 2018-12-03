@@ -2,6 +2,9 @@
 set -e
 #set -x
 
+# shellcheck disable=SC1091
+source /etc/profile.d/vault.sh
+
 VAULT_TOKEN="$(consul kv get vault-root-token)"
 export VAULT_TOKEN
 
