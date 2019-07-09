@@ -1,0 +1,16 @@
+[Unit]
+Description=consul esm
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=consul-esm
+Group=consul-esm
+EnvironmentFile=-/etc/default/consul-esm
+Restart=on-failure
+ExecStart=/usr/local/bin/consul-esm agent $OPTIONS -config-dir /etc/consul-esm.d
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
