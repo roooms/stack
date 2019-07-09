@@ -8,25 +8,28 @@ source /etc/profile.d/vault.sh
 VAULT_TOKEN="$(consul kv get vault-root-token)"
 export VAULT_TOKEN
 
-vault write sys/policy/admin policy=@/vagrant/vault-policies/admin.hcl
-vault write sys/policy/read-only policy=@/vagrant/vault-policies/maths-admin.hcl
-vault write sys/policy/app1 policy=@/vagrant/vault-policies/maths-admin.hcl
-vault write sys/policy/app2 policy=@/vagrant/vault-policies/maths-admin.hcl
+vault policy write admin /vagrant/vault-policies/admin.hcl
+vault policy write ops-team-user /vagrant/vault-policies/ops-team-user.hcl
+vault policy write dev-team-user /vagrant/vault-policies/dev-team-user.hcl
 
 vault auth enable userpass
 
-vault write auth/userpass/users/alice \
+vault write auth/userpass/users/admin \
   password=password \
   policies=admin
 
+vault write auth/userpass/users/alice \
+  password=password \
+  policies=ops-team-user
+
 vault write auth/userpass/users/brian \
   password=password \
-  policies=read-only
+  policies=ops-team-user
 
 vault write auth/userpass/users/chris \
   password=password \
-  policies=app1
+  policies=ops-team-user
 
 vault write auth/userpass/users/donna \
   password=password \
-  policies=app2
+  policies=dev-team-user
