@@ -14,7 +14,7 @@ echo "--> Configuring vault server"
 sudo mkdir -p ${PLUGIN_DIR} && sudo chmod 755 ${PLUGIN_DIR}
 # vault configuration file
 sed -e "s/{{ vault_ip }}/${VAULT_IP}/g" \
-    /vagrant/etc/vault.d/default.hcl | sudo tee /etc/vault.d/default.hcl
+    /vagrant/etc/vault.d/vault.hcl | sudo tee /etc/vault.d/vault.hcl
 cat /vagrant/etc/vault.d/storage-${VAULT_STORAGE}.hcl | sudo tee /etc/vault.d/storage.hcl
 # env configuration
 echo "export VAULT_ADDR=${VAULT_ADDR}" | sudo tee /etc/profile.d/vault.sh

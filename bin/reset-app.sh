@@ -10,6 +10,7 @@ echo "--> Removing any existing configuration and local data"
 sudo rm -rf /etc/${APP}.d/*
 sudo rm -rf /opt/${APP}/*
 sudo rm -f /etc/profile.d/${APP}.sh
+sudo rm -f /etc/systemd/system/${APP}.service
 
 if [[ ${APP} = "vault" ]]; then
     for file in "${HOME}/.vault-token" "/etc/profile.d/vault.sh"; do
