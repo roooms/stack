@@ -17,15 +17,15 @@ Vagrant.configure(2) do |config|
   (1..3).each do |n|
     config.vm.define nodename = "server#{n}.local" do |node|
       node.vm.hostname = nodename
-      node.vm.network "private_network", ip: "10.0.0.#{sbaseip+n}"
+      node.vm.network "private_network", ip: "192.168.56.#{sbaseip+n}"
     end
   end
   # clients
-  cbaseip = 13
+  cbaseip = 20
   (1..3).each do |n|
     config.vm.define nodename = "client#{n}.local" do |node|
       node.vm.hostname = nodename
-      node.vm.network "private_network", ip: "10.0.0.#{cbaseip+n}"
+      node.vm.network "private_network", ip: "192.168.56.#{cbaseip+n}"
     end
   end
 end
