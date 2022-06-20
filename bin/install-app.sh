@@ -7,7 +7,7 @@ VERSION="${2:-"$(curl -s https://releases.hashicorp.com/${APP}/ | grep href | gr
 ZIP="${3:-"${APP}_${VERSION}_linux_amd64.zip"}"
 URL="https://releases.hashicorp.com/${APP}/${VERSION}/${ZIP}"
 CONFIG_DIR="/etc/${APP}.d"
-DATA_DIR="/opt/${APP}"
+DATA_DIR="/opt/${APP}/data"
 
 if [[ ! -f $(command -v unzip) ]]; then
   echo "--> Installing unzip"
