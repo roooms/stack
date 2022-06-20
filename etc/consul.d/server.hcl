@@ -6,7 +6,4 @@ service {
 }
 connect {
   enabled = true
-  proxy {
-    allow_managed_root = true
-  }
 }

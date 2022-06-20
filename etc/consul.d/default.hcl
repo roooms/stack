@@ -8,4 +8,6 @@ performance {
   raft_multiplier = 1
 }
 retry_join = ["{{ retry_join }}"]
-ui = true
+ui_config {
+  enabled = true
+}
