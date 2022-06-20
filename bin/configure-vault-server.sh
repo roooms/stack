@@ -8,7 +8,7 @@ VAULT_STORAGE="${1:-"consul"}"
 PLUGIN_DIR="/etc/vault.d/plugins"
 
 echo "--> Enable mlock syscall for vault"
-sudo setcap cap_ipc_lock=+ep /usr/local/bin/vault
+sudo setcap cap_ipc_lock=+ep $(which vault)
 
 echo "--> Configuring vault server"
 sudo mkdir -p ${PLUGIN_DIR} && sudo chmod 755 ${PLUGIN_DIR}
@@ -19,3 +19,6 @@ cat /vagrant/etc/vault.d/storage-${VAULT_STORAGE}.hcl | sudo tee /etc/vault.d/st
 # env configuration
 echo "export VAULT_ADDR=${VAULT_ADDR}" | sudo tee /etc/profile.d/vault.sh
 sudo chmod 644 /etc/profile.d/vault.sh
+
+echo "--> You need to source /etc/profile.d/vault.sh if you don't re-login"
+source /etc/profile.d/vault.sh
